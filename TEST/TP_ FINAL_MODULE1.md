@@ -258,15 +258,55 @@ dpkg -l apparmor ssh git ufw vim sudo
 ![image](https://github.com/user-attachments/assets/5516d60a-3272-4592-bb44-bec754f84bb0)
 ![image](https://github.com/user-attachments/assets/05eeb741-6195-4602-91fa-a7712b338e15)
 
-## Configuration de la politique de mot de passe fort
 
-1. **Configurer `/etc/pam.d/common-password` pour un mot de passe fort** (par exemple `minclass=3`).
+## Configuration des paramètres de gestion des mots de passe
 
-2. **Vérifier les informations de mot de passe avec `chage -l <utilisateur>`** :
+### Définir la durée maximale de validité des mots de passe
 
-    ```bash
-    chage -l ronan
-    ```
+Pour forcer les utilisateurs à changer leur mot de passe tous les 90 jours, utilisez la commande suivante :
+
+```bash
+sudo chage --maxdays 90 <utilisateur>
+```
+
+Remplacez `<utilisateur>` par le nom du compte utilisateur que vous souhaitez configurer.
+
+### Définir la durée minimale avant le changement de mot de passe
+
+Pour empêcher un utilisateur de changer son mot de passe plus d'une fois tous les 7 jours, configurez ce paramètre :
+
+```bash
+sudo chage --mindays 7 <utilisateur>
+```
+
+### Définir le délai d'avertissement avant l'expiration du mot de passe
+
+Pour avertir les utilisateurs 7 jours avant l'expiration de leur mot de passe, utilisez la commande suivante :
+
+```bash
+sudo chage --warndays 7 <utilisateur>
+```
+
+### Conseils de sécurité supplémentaires
+
+Il est recommandé de définir un umask de **077** dans le fichier `/etc/login.defs` pour améliorer la sécurité des fichiers créés par les utilisateurs.
+
+Pour cela, éditez le fichier `/etc/login.defs` avec un éditeur de texte :
+
+```bash
+sudo nano /etc/login.defs
+```
+
+Ajoutez ou modifiez la ligne suivante :
+
+```bash
+UMASK 077
+```
+
+Cela garantit que les nouveaux fichiers créés par les utilisateurs ont des permissions restrictives par défaut, empêchant l'accès par d'autres utilisateurs non autorisés.
+
+
+Cette version améliore la clarté des instructions et apporte des précisions concernant les recommandations de sécurité avec l'umask.
 
 ![image](https://github.com/user-attachments/assets/59c70a30-5f6b-4c99-9502-79cc6b3f5942)
 ![image](https://github.com/user-attachments/assets/85e6d8f9-c6b0-4201-aaa5-4aec63217097)
