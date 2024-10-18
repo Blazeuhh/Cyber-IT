@@ -335,7 +335,7 @@ UMASK 077
 
 - **Logs des commandes `sudo` dans `/var/log/sudo/`** :
 
- ![image](https://github.com/user-attachments/assets/7daf481f-7a85-45a0-8688-c026e7b5c435)
+![image](https://github.com/user-attachments/assets/7daf481f-7a85-45a0-8688-c026e7b5c435)
 
 
 ![image](https://github.com/user-attachments/assets/a1dfedef-bf32-4ed3-893b-37d5b94f4eb0)
