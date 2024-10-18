@@ -38,11 +38,15 @@ apt update`
 
 8. Monter les volumes logiques aux points de montage corrects.
 
-Normalement cela devrait ressemble à ceci 
+### Normalement cela devrait ressemble à ceci avec la commande lsblk :
+
  ![image](https://github.com/user-attachments/assets/d586204c-56d3-40e2-af0b-b9098903bf25)
 
-### Problèmes :
+### Avec la commande blkid pour voir les UID :
 
+![image](https://github.com/user-attachments/assets/60aa0cf4-f282-47fe-b7cc-af83e2b45244)
+
+### Problèmes :
 
 #### Si jamais vous avez envie de supprimer une LVM vérifier d'abord si elle est pas monté
 
