@@ -101,9 +101,90 @@ sudo passwd adminuser`
 
 ![image](https://github.com/user-attachments/assets/9148f72b-1dad-4bd3-968e-d0769a34c487)
 
+
+#### Créer le groupe admins
+sudo groupadd admins
+
+#### Ajouter adminuser au groupe admins
+sudo usermod -aG admins adminuser
+
+#### Créer le répertoire /data
+sudo mkdir /data
+
+#### Changer le groupe propriétaire de /data pour admins
+sudo chown :admins /data
+
+#### Configurer les permissions pour permettre l'accès uniquement au groupe admins
+sudo chmod 770 /data
+
 ### Voici normalement ce que vous devez avoir comme résultat après les commandes  `ls -ld /data` et `getfacl /data`
 ![image](https://github.com/user-attachments/assets/85b700d4-7a93-46c7-b68d-5279166757c0)
 
 ![image](https://github.com/user-attachments/assets/cdd16a0f-a5d1-4353-8a67-92f959807670)
+
+Pour configurer le service SSH de sorte qu'il fonctionne sur le port **4242** et empêche la connexion SSH avec l'utilisateur **root**, voici les étapes à suivre :
+
+#### SSH port 4242 , PermitRootLogin no et vérification
+
+### 1. Modifier la configuration de SSH
+
+Le fichier de configuration principal de SSH est **`/etc/ssh/sshd_config`**. Tu dois modifier ce fichier pour :
+- Changer le port par défaut (22) pour 4242.
+- Désactiver la connexion SSH pour l'utilisateur root.
+
+Pour éditer ce fichier, utilise un éditeur de texte comme `nano` ou `vim` :
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+### 2. Configurer le port SSH sur 4242
+
+Dans le fichier **`sshd_config`**, trouve la ligne qui spécifie le port (souvent `Port 22`) et modifie-la comme suit :
+
+```bash
+Port 4242
+```
+
+Si la ligne est commentée (avec un `#` devant), retire le `#` pour activer la ligne.
+
+### 3. Désactiver la connexion SSH pour l'utilisateur root
+
+Ensuite, trouve la ligne suivante dans le même fichier **`sshd_config`** :
+
+```bash
+PermitRootLogin yes
+```
+
+Modifie-la pour interdire la connexion SSH avec l'utilisateur root :
+
+```bash
+PermitRootLogin no
+```
+
+Cela interdira explicitement les connexions SSH pour l'utilisateur `root`.
+
+### 4. Enregistrer et quitter l'éditeur
+
+- Si tu utilises `nano`, enregistre les modifications avec `CTRL + O`, puis appuie sur `ENTER` pour confirmer. Ensuite, quitte l'éditeur avec `CTRL + X`.
+- Si tu utilises `vim`, enregistre et quitte avec `:wq`.
+
+### 5. Redémarrer le service SSH
+
+Après avoir modifié la configuration, il faut redémarrer le service SSH pour que les changements prennent effet :
+
+```bash
+sudo systemctl restart ssh
+```
+
+### Voici normalement ce que vous devez avoir comme résultat après avoir modifier le fichier /etc/ssh/sshd_config et après la commande ss -tuln | grep 4242
+
+![image](https://github.com/user-attachments/assets/8ba7bbc1-f1c4-4d46-935b-3adb6bdb090b)
+
+![image](https://github.com/user-attachments/assets/739a2c79-dfe9-46fe-8cf4-8d3188f116df)
+
+### Ouverture du port 4242 sur ufw avec sudo ufw allow 4242/tcp et ufw status pour voir les règles (ufw enable si le firewall n'est pas actif)
+
+![image](https://github.com/user-attachments/assets/9f9932aa-f987-4035-8221-76557def3e47)
 
 
