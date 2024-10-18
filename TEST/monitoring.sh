@@ -53,3 +53,6 @@ ip link show | awk '/ether/ {print "MAC : " $2}'
 # Nombre de commandes exécutées avec sudo
 echo "Nombre de commandes exécutées avec sudo :"
 grep -c 'COMMAND=' /var/log/sudo/sudo.log 2>/dev/null || echo "Le fichier sudo.log est introuvable."
+
+
+
