@@ -68,7 +68,7 @@ apt update
 
     ![image](https://github.com/user-attachments/assets/46de52e1-c30b-425b-b523-0e90b1159592)
 
-## [Problème]
+### [Problème]
 
 ### Suppression d'une LVM
 
@@ -180,12 +180,12 @@ dpkg -l apparmor ssh git ufw vim sudo
     sudo chmod 770 /data
     ```
 
-### Résultats attendus après les commandes `ls -ld /data` et `getfacl /data`
+#### Résultats attendus après les commandes `ls -ld /data` et `getfacl /data`
 
 ![image](https://github.com/user-attachments/assets/85b700d4-7a93-46c7-b68d-5279166757c0)
 ![image](https://github.com/user-attachments/assets/cdd16a0f-a5d1-4353-8a67-92f959807670)
 
-## Configuration du service SSH
+### Configuration du service SSH
 
 1. **Modifier la configuration de SSH** pour le faire fonctionner sur le port **4242** et désactiver la connexion root.
 
@@ -302,11 +302,6 @@ Ajoutez ou modifiez la ligne suivante :
 ```bash
 UMASK 077
 ```
-
-Cela garantit que les nouveaux fichiers créés par les utilisateurs ont des permissions restrictives par défaut, empêchant l'accès par d'autres utilisateurs non autorisés.
-
-
-Cette version améliore la clarté des instructions et apporte des précisions concernant les recommandations de sécurité avec l'umask.
 
 ![image](https://github.com/user-attachments/assets/59c70a30-5f6b-4c99-9502-79cc6b3f5942)
 ![image](https://github.com/user-attachments/assets/85e6d8f9-c6b0-4201-aaa5-4aec63217097)
