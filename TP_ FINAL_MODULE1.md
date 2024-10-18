@@ -101,7 +101,9 @@ sudo passwd adminuser`
 
 ![image](https://github.com/user-attachments/assets/9148f72b-1dad-4bd3-968e-d0769a34c487)
 
+### Voici normalement ce que vous devez avoir comme résultat après les commandes  `ls -ld /data` et `getfacl /data`
+![image](https://github.com/user-attachments/assets/85b700d4-7a93-46c7-b68d-5279166757c0)
 
-
+![image](https://github.com/user-attachments/assets/cdd16a0f-a5d1-4353-8a67-92f959807670)
 
 
