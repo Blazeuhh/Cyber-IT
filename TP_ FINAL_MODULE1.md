@@ -1,6 +1,8 @@
 ## TP FINAL MODULE 1
 
-On fait des LVMs 
+On fait des LVMs pour la partition sda 5 :
+
+Installer les packages nécessaires pour crypté (ou le faire dans la création de votre débian ) puis faire les LVM correctement :
 
 `apt install cryptsetup && apt install lvm2
 apt update`
