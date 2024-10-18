@@ -56,9 +56,9 @@ Normalement cela devrait ressemble à ceci
 
 `swapoff /dev/LVMGroup/swap`
 
-#### Ensuite retirez la LVM
+#### Ensuite retirez la LVM souhaité
 
-`lvremove /dev/LVMGroup/swap`
+`lvremove /dev/LVMGroup/xxxx`
 
 
 
