@@ -52,7 +52,7 @@ apt update
 
 6. **Formatez les volumes logiques**.
 
-7. **Montez les volumes logiques** aux points de montage appropriés.
+7. **Montez les volumes logiques**
 
 ### Vérification des LVMs créés
 
@@ -68,7 +68,7 @@ apt update
 
     ![image](https://github.com/user-attachments/assets/46de52e1-c30b-425b-b523-0e90b1159592)
 
-## Gestion des volumes logiques (LVM)
+## [Problème]
 
 ### Suppression d'une LVM
 
