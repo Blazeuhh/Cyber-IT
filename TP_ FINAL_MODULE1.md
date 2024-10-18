@@ -42,7 +42,7 @@ apt update`
 
  ![image](https://github.com/user-attachments/assets/d586204c-56d3-40e2-af0b-b9098903bf25)
 
-### Avec la commande blkid pour voir les UID :
+### Avec la commande blkid pour voir les UUID :
 
 ![image](https://github.com/user-attachments/assets/60aa0cf4-f282-47fe-b7cc-af83e2b45244)
 
