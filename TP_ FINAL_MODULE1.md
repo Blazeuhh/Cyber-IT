@@ -194,3 +194,6 @@ sudo systemctl restart ssh
 
 ![image](https://github.com/user-attachments/assets/05eeb741-6195-4602-91fa-a7712b338e15)
 
+
+![image](https://github.com/user-attachments/assets/59c70a30-5f6b-4c99-9502-79cc6b3f5942) minclass=3
+
