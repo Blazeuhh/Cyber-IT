@@ -1,6 +1,6 @@
 ## TP FINAL MODULE 1
 
-#### On fait des LVMs pour la partition sda 5 en ligne de commandes :
+### On fait des LVMs pour la partition sda 5 en ligne de commandes :
 
 ![image](https://github.com/user-attachments/assets/ffdb10c4-fb66-4fdb-8596-9254b447062a)
 
@@ -45,6 +45,11 @@ apt update`
 ### Avec la commande blkid pour voir les UUID :
 
 ![image](https://github.com/user-attachments/assets/60aa0cf4-f282-47fe-b7cc-af83e2b45244)
+
+### Correspondance UUID (cat /etc/fstab)
+
+![image](https://github.com/user-attachments/assets/46de52e1-c30b-425b-b523-0e90b1159592)
+
 
 ### Problèmes :
 
