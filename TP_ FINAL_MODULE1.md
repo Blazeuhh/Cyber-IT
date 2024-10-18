@@ -1,8 +1,11 @@
 ## TP FINAL MODULE 1
 
-On fait des LVMs pour la partition sda 5 :
+#### On fait des LVMs pour la partition sda 5 en ligne de commandes :
 
-Installer les packages nécessaires pour crypté (ou le faire dans la création de votre débian ) puis faire les LVM correctement :
+![image](https://github.com/user-attachments/assets/ffdb10c4-fb66-4fdb-8596-9254b447062a)
+
+
+#### Installer les packages nécessaires pour crypté en ligne de commandes puis faire les LVM correctement :
 
 `apt install cryptsetup && apt install lvm2
 apt update`
@@ -20,7 +23,7 @@ apt update`
 4. Créer un groupe de volumes :
    `vgcreate LVMGroup /dev/mapper/crypt`
 
-5. Créer les volumes logiques :
+5. Créer les volumes logiques ( avec les Go des LVM que vous voulez ici 100 M est un exemple ) :
    ```
    lvcreate -L 100M -n root LVMGroup
    lvcreate -L 100M -n swap LVMGroup
@@ -31,10 +34,32 @@ apt update`
    lvcreate -L 100M -n var--log LVMGroup
    ```
 
-7. Formater les volumes logiques avec le système de fichiers approprié.
+7. Formater les volumes logiques .
 
 8. Monter les volumes logiques aux points de montage corrects.
 
+Normalement cela devrait ressemble à ceci 
+ ![image](https://github.com/user-attachments/assets/d586204c-56d3-40e2-af0b-b9098903bf25)
 
-![image](https://github.com/user-attachments/assets/d586204c-56d3-40e2-af0b-b9098903bf25)
+### Problèmes :
+
+
+#### Si jamais vous avez envie de supprimer une LVM vérifier d'abord si elle est pas monté
+
+`lsblk`
+
+#### Si elle est monté faites la commande suivante :
+
+`umount /dev/LVMGroup/xxxx`
+
+#### Désactivez le swap (si c'est une partition swap )  :
+
+`swapoff /dev/LVMGroup/swap`
+
+#### Ensuite retirez la LVM
+
+`lvremove /dev/LVMGroup/swap`
+
+
+
 
