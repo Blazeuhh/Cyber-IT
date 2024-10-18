@@ -1,272 +1,305 @@
-## TP FINAL MODULE 1
 
-### On fait des LVMs pour la partition sda 5 en ligne de commandes :
+# TP Final Module 1
+
+## Création de LVMs pour la partition sda5 via la ligne de commande
 
 ![image](https://github.com/user-attachments/assets/ffdb10c4-fb66-4fdb-8596-9254b447062a)
 
+### Installation des paquets nécessaires et création des LVMs
 
-#### Installer les packages nécessaires pour crypté en ligne de commandes puis faire les LVM correctement :
+Installez les paquets nécessaires pour le chiffrement et la gestion des LVMs :
 
-`apt install cryptsetup && apt install lvm2
-apt update`
+```bash
+apt install cryptsetup lvm2
+apt update
+```
 
-1. Chiffrer la partition :
-   Utiliser LUKS (Linux Unified Key Setup) pour chiffrer la partition. 
-   `cryptsetup luksFormat /dev/sda5`
+1. **Chiffrez la partition** : Utilisez LUKS pour chiffrer `/dev/sda5`.
 
-2. Ouvrir la partition chiffrée :
-   `cryptsetup luksOpen /dev/sda5 crypt`
-
-3. Créer un volume physique LVM sur la partition chiffrée :
-   `pvcreate /dev/mapper/crypt`
-
-4. Créer un groupe de volumes :
-   `vgcreate LVMGroup /dev/mapper/crypt`
-
-5. Créer les volumes logiques ( avec les Go des LVM que vous voulez ici 100 M est un exemple ) :
-
+    ```bash
+    cryptsetup luksFormat /dev/sda5
     ```
-   lvcreate -L 100M -n root LVMGroup
-   lvcreate -L 100M -n swap LVMGroup
-   lvcreate -L 100M -n srv LVMGroup
-   lvcreate -L 100M -n home LVMGroup
-   lvcreate -L 100M -n var LVMGroup
-   lvcreate -L 100M -n tmp LVMGroup
-   lvcreate -L 100M -n var--log LVMGroup
-   ```
 
-7. Formater les volumes logiques .
+2. **Ouvrez la partition chiffrée** :
 
-8. Monter les volumes logiques aux points de montage corrects.
+    ```bash
+    cryptsetup luksOpen /dev/sda5 crypt
+    ```
 
-#### Normalement cela devrait ressemble à ceci avec la commande lsblk :
+3. **Créez un volume physique LVM sur la partition chiffrée** :
 
- ![image](https://github.com/user-attachments/assets/d586204c-56d3-40e2-af0b-b9098903bf25)
+    ```bash
+    pvcreate /dev/mapper/crypt
+    ```
 
-#### Avec la commande blkid pour voir les UUID :
+4. **Créez un groupe de volumes** :
 
-![image](https://github.com/user-attachments/assets/60aa0cf4-f282-47fe-b7cc-af83e2b45244)
+    ```bash
+    vgcreate LVMGroup /dev/mapper/crypt
+    ```
 
-#### Correspondance UUID (cat /etc/fstab)
+5. **Créez les volumes logiques** : (Les tailles des volumes sont données à titre d'exemple, ici 100M).
 
-![image](https://github.com/user-attachments/assets/46de52e1-c30b-425b-b523-0e90b1159592)
+    ```bash
+    lvcreate -L 100M -n root LVMGroup
+    lvcreate -L 100M -n swap LVMGroup
+    lvcreate -L 100M -n srv LVMGroup
+    lvcreate -L 100M -n home LVMGroup
+    lvcreate -L 100M -n var LVMGroup
+    lvcreate -L 100M -n tmp LVMGroup
+    lvcreate -L 100M -n var-log LVMGroup
+    ```
 
+6. **Formatez les volumes logiques**.
 
-### Problèmes :
+7. **Montez les volumes logiques** aux points de montage appropriés.
 
-#### Si jamais vous avez envie de supprimer une LVM vérifier d'abord si elle est pas monté
+### Vérification des LVMs créés
 
-`lsblk`
+- **Avec la commande `lsblk`** :
 
-#### Si elle est monté faites la commande suivante :
+    ![image](https://github.com/user-attachments/assets/d586204c-56d3-40e2-af0b-b9098903bf25)
 
-`umount /dev/LVMGroup/xxxx`
+- **Avec la commande `blkid` pour voir les UUIDs** :
 
-#### Désactivez le swap (si c'est une partition swap )  :
+    ![image](https://github.com/user-attachments/assets/60aa0cf4-f282-47fe-b7cc-af83e2b45244)
 
-`swapoff /dev/LVMGroup/swap`
+- **Correspondance des UUIDs dans `/etc/fstab`** :
 
-#### Ensuite retirez la LVM souhaité
+    ![image](https://github.com/user-attachments/assets/46de52e1-c30b-425b-b523-0e90b1159592)
 
-`lvremove /dev/LVMGroup/xxxx`
+## Gestion des volumes logiques (LVM)
 
-#### Installer et Voir les paquets installés :
+### Suppression d'une LVM
 
-`apt install ssh git ufw vim sudo`
-`dpkg -l apprmor ssh git ufw vim sudo`
+1. **Vérifiez si elle est montée** :
+
+    ```bash
+    lsblk
+    ```
+
+2. **Si montée, démontez-la** :
+
+    ```bash
+    umount /dev/LVMGroup/xxxx
+    ```
+
+3. **Désactivez le swap (si c'est une partition swap)** :
+
+    ```bash
+    swapoff /dev/LVMGroup/swap
+    ```
+
+4. **Supprimez la LVM** :
+
+    ```bash
+    lvremove /dev/LVMGroup/xxxx
+    ```
+
+## Installation de paquets essentiels
+
+Installez les paquets SSH, Git, UFW, Vim et Sudo :
+
+```bash
+apt install ssh git ufw vim sudo
+dpkg -l apparmor ssh git ufw vim sudo
+```
 
 ![image](https://github.com/user-attachments/assets/e7407b4c-0933-4865-ab58-d0e163733bab)
 
-### Créer les utilisateurs user1, user2, adminuser puis mettre adminuser dans le group cyber
+## Création d'utilisateurs et groupes
 
-#### Ajouter des utilisateurs
+1. **Ajouter des utilisateurs** :
 
-`sudo useradd user1
-sudo useradd user2
-sudo useradd adminuser`
+    ```bash
+    sudo useradd user1
+    sudo useradd user2
+    sudo useradd adminuser
+    ```
 
-#### Définir un mot de passe pour chaque utilisateur
-`sudo passwd user1
-sudo passwd user2
-sudo passwd adminuser`
+2. **Définir un mot de passe pour chaque utilisateur** :
 
-#### Créer le groupe cyber
-`sudo groupadd cyber`
+    ```bash
+    sudo passwd user1
+    sudo passwd user2
+    sudo passwd adminuser
+    ```
 
-#### Ajouter adminuser au groupe cyber
-`sudo usermod -aG cyber adminuser`
+3. **Créer un groupe `cyber`** :
 
-#### Vérifier les groupes d'adminuser
-`groups adminuser`
+    ```bash
+    sudo groupadd cyber
+    ```
 
-#### Voici normalement ce que vous devez avoir comme résultat après les commandes  `getent passwd` et `getent groups`
+4. **Ajouter `adminuser` au groupe `cyber`** :
+
+    ```bash
+    sudo usermod -aG cyber adminuser
+    ```
+
+5. **Vérifier les groupes de `adminuser`** :
+
+    ```bash
+    groups adminuser
+    ```
+
+### Résultats attendus après les commandes `getent passwd` et `getent group`
 
 ![image](https://github.com/user-attachments/assets/256bfa75-f571-448c-8289-90141c9889e8)
-
 ![image](https://github.com/user-attachments/assets/9148f72b-1dad-4bd3-968e-d0769a34c487)
 
-### Créer le groupe cyber et les utilisateurs
+### Configuration du groupe `admins` et du répertoire `/data`
 
-#### Créer le groupe admins
-sudo groupadd admins
+1. **Créer le groupe `admins`** :
 
-#### Ajouter adminuser au groupe admins
-sudo usermod -aG admins adminuser
+    ```bash
+    sudo groupadd admins
+    ```
 
-#### Créer le répertoire /data
-sudo mkdir /data
+2. **Ajouter `adminuser` au groupe `admins`** :
 
-#### Changer le groupe propriétaire de /data pour admins
-sudo chown :admins /data
+    ```bash
+    sudo usermod -aG admins adminuser
+    ```
 
-#### Configurer les permissions pour permettre l'accès uniquement au groupe admins
-sudo chmod 770 /data
+3. **Créer le répertoire `/data`** :
 
-### Voici normalement ce que vous devez avoir comme résultat après les commandes  `ls -ld /data` et `getfacl /data`
+    ```bash
+    sudo mkdir /data
+    ```
+
+4. **Changer le groupe propriétaire de `/data` pour `admins`** :
+
+    ```bash
+    sudo chown :admins /data
+    ```
+
+5. **Configurer les permissions d'accès à `/data`** :
+
+    ```bash
+    sudo chmod 770 /data
+    ```
+
+### Résultats attendus après les commandes `ls -ld /data` et `getfacl /data`
+
 ![image](https://github.com/user-attachments/assets/85b700d4-7a93-46c7-b68d-5279166757c0)
-
 ![image](https://github.com/user-attachments/assets/cdd16a0f-a5d1-4353-8a67-92f959807670)
 
-Pour configurer le service SSH de sorte qu'il fonctionne sur le port **4242** et empêche la connexion SSH avec l'utilisateur **root**, voici les étapes à suivre :
+## Configuration du service SSH
 
-### SSH port 4242 , PermitRootLogin no et vérification
+1. **Modifier la configuration de SSH** pour le faire fonctionner sur le port **4242** et désactiver la connexion root.
 
-#### 1. Modifier la configuration de SSH
+    - Ouvrez le fichier de configuration avec `nano` ou `vim` :
 
-Le fichier de configuration principal de SSH (le serveur et le client) est **`/etc/ssh/sshd_config`**. Tu dois modifier ce fichier pour :
-- Changer le port par défaut (22) pour 4242.
-- Désactiver la connexion SSH pour l'utilisateur root.
+      ```bash
+      sudo nano /etc/ssh/sshd_config
+      ```
 
-Pour éditer ce fichier, utilise un éditeur de texte comme `nano` ou `vim` :
+2. **Configurer le port SSH sur 4242** :
 
-```bash
-sudo nano /etc/ssh/sshd_config
-```
+    - Trouvez et modifiez la ligne suivante :
 
-### 2. Configurer le port SSH sur 4242
+      ```bash
+      Port 4242
+      ```
 
-Dans le fichier **`sshd_config`**, trouve la ligne qui spécifie le port (souvent `Port 22`) et modifie-la comme suit :
+3. **Désactiver la connexion SSH pour l'utilisateur `root`** :
 
-```bash
-Port 4242
-```
+    - Trouvez la ligne `PermitRootLogin` et modifiez-la ainsi :
 
-Si la ligne est commentée (avec un `#` devant), retire le `#` pour activer la ligne.
+      ```bash
+      PermitRootLogin no
+      ```
 
-### 3. Désactiver la connexion SSH pour l'utilisateur root
+4. **Redémarrer le service SSH** :
 
-Ensuite, trouve la ligne suivante dans le même fichier **`sshd_config`** :
+    ```bash
+    sudo systemctl restart ssh
+    ```
 
-```bash
-PermitRootLogin yes
-```
-
-Modifie-la pour interdire la connexion SSH avec l'utilisateur root :
-
-```bash
-PermitRootLogin no
-```
-
-Cela interdira explicitement les connexions SSH pour l'utilisateur `root`.
-
-### 4. Enregistrer et quitter l'éditeur
-
-- Si tu utilises `nano`, enregistre les modifications avec `CTRL + O`, puis appuie sur `ENTER` pour confirmer. Ensuite, quitte l'éditeur avec `CTRL + X`.
-- Si tu utilises `vim`, enregistre et quitte avec `:wq`.
-
-### 5. Redémarrer le service SSH
-
-Après avoir modifié la configuration, il faut redémarrer le service SSH pour que les changements prennent effet :
-
-```bash
-sudo systemctl restart ssh
-```
-
-#### Voici normalement ce que vous devez avoir comme résultat après avoir modifier le fichier /etc/ssh/sshd_config et après la commande ss -tuln | grep 4242
+### Résultats attendus après la modification de `sshd_config` et la commande `ss -tuln | grep 4242`
 
 ![image](https://github.com/user-attachments/assets/8ba7bbc1-f1c4-4d46-935b-3adb6bdb090b)
-
 ![image](https://github.com/user-attachments/assets/739a2c79-dfe9-46fe-8cf4-8d3188f116df)
 
-### Ouverture du port 4242 sur ufw avec sudo ufw allow 4242/tcp et ufw status pour voir les règles (ufw enable si le firewall n'est pas actif)
+### Ouverture du port 4242 dans UFW
+
+1. **Autorisez le port 4242** :
+
+    ```bash
+    sudo ufw allow 4242/tcp
+    ```
+
+2. **Vérifiez l'état d'UFW** :
+
+    ```bash
+    sudo ufw status
+    ```
+
+    - Si UFW n'est pas activé, activez-le avec :
+
+      ```bash
+      sudo ufw enable
+      ```
 
 ![image](https://github.com/user-attachments/assets/9f9932aa-f987-4035-8221-76557def3e47)
 
+## Changement du hostname
 
-### Changement de Hostname par nanalinux ( commande utilisé nano /etc/hostname , nano /etc/hosts )
+1. **Changer le hostname avec `nano`** :
+
+    - Modifiez les fichiers `/etc/hostname` et `/etc/hosts` pour définir le nouveau hostname, par exemple **nanalinux**.
+
+    ```bash
+    sudo nano /etc/hostname
+    sudo nano /etc/hosts
+    ```
 
 ![image](https://github.com/user-attachments/assets/5516d60a-3272-4592-bb44-bec754f84bb0)
-
 ![image](https://github.com/user-attachments/assets/05eeb741-6195-4602-91fa-a7712b338e15)
 
-### Mettre un mot de passe fort /etc/pam.d/common-password et chage -l <utilisateur> (ronan)
+## Configuration de la politique de mot de passe fort
 
-![image](https://github.com/user-attachments/assets/59c70a30-5f6b-4c99-9502-79cc6b3f5942) minclass=3
+1. **Configurer `/etc/pam.d/common-password` pour un mot de passe fort** (par exemple `minclass=3`).
 
+2. **Vérifier les informations de mot de passe avec `chage -l <utilisateur>`** :
+
+    ```bash
+    chage -l ronan
+    ```
+
+![image](https://github.com/user-attachments/assets/59c70a30-5f6b-4c99-9502-79cc6b3f5942)
 ![image](https://github.com/user-attachments/assets/85e6d8f9-c6b0-4201-aaa5-4aec63217097)
 
-### Configurer sudo selon une pratique stricte/etc/sudoers et /var/log/sudo/
+## Configuration stricte de sudo
 
-![image](https://github.com/user-attachments/assets/622a703b-0564-44ee-9b91-5b7bafde8289)
+### Configurer sudo selon une pratique stricte
 
-![image](https://github.com/user-attachments/assets/7daf481f-7a85-45a0-8688-c026e7b5c435)
+1. **Modifier le fichier `/etc/sudoers`** : Ce fichier permet de configurer les permissions `sudo` de manière stricte. Pour l'éditer, utilisez l'éditeur sécurisé `visudo` :
 
+    ```bash
+    sudo visudo
+    ```
 
-### Script monitoring.sh
-#!/bin/bash
+2. **Vérifiez que les logs des commandes `sudo` sont enregistrés dans `/var/log/sudo`**. Cela permet d'auditer les actions exécutées avec `sudo`.
 
-# Architecture du système et version du kernel
-echo "Architecture et version du kernel :"
-uname -a
+    - Si ce n'est pas déjà configuré, assurez-vous que la ligne suivante est présente dans le fichier `/etc/sudoers` pour consigner l'utilisation de `sudo` :
 
-# Nombre de processeurs physiques
-echo "Nombre de processeurs physiques :"
-grep "physical id" /proc/cpuinfo | sort | uniq | wc -l
+      ```bash
+      Defaults        logfile="/var/log/sudo/sudo.log"
+      ```
 
-# Nombre de processeurs virtuels (threads)
-echo "Nombre de processeurs virtuels :"
-grep -c ^processor /proc/cpuinfo
+3. **Vérifiez le fichier `/var/log/sudo/`** pour auditer les commandes exécutées avec `sudo`.
 
-# Mémoire vive disponible et son taux d'utilisation
-echo "Mémoire vive disponible et taux d'utilisation :"
-free -m | awk '/Mem:/ { printf "Mémoire disponible : %dMB / %dMB (%.2f%% utilisé)\n", $3, $2, $3/$2 * 100 }'
+### Résultats attendus
 
-# Mémoire disponible actuelle (swap) et son taux d'utilisation
-echo "Mémoire swap disponible et taux d'utilisation :"
-free -m | awk '/Swap:/ { printf "Mémoire swap disponible : %dMB / %dMB (%.2f%% utilisé)\n", $3, $2, $3/$2 * 100 }'
+- **Fichier `/etc/sudoers` strictement configuré** :
 
-# Taux d'utilisation des processeurs
-echo "Taux d'utilisation des processeurs :"
-mpstat | awk '$3 ~ /all/ { printf "Utilisation CPU : %.2f%%\n", 100 - $12 }'
+    ![image](https://github.com/user-attachments/assets/622a703b-0564-44ee-9b91-5b7bafde8289)
 
-# Date et heure du dernier redémarrage
-echo "Dernier redémarrage :"
-who -b | awk '{print $3, $4}'
+- **Logs des commandes `sudo` dans `/var/log/sudo/`** :
 
-# Vérification si LVM est actif
-echo "LVM actif ou non :"
-if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then
-    echo "LVM est actif."
-else
-    echo "LVM n'est pas actif."
-fi
-
-# Nombre de connexions actives
-echo "Nombre de connexions actives :"
-ss -s | grep 'estab' | awk '{print $3 " connexions établies"}'
-
-# Nombre d'utilisateurs actuellement connectés
-echo "Nombre d'utilisateurs connectés :"
-who | wc -l
-
-# Adresse IPv4 et MAC
-echo "Adresse IP et MAC :"
-ip -o -4 addr show | awk '{print "Interface : " $2 "\nIP : " $4}'
-ip link show | awk '/ether/ {print "MAC : " $2}'
-
-# Nombre de commandes exécutées avec sudo
-echo "Nombre de commandes exécutées avec sudo :"
-grep -c 'COMMAND=' /var/log/sudo/sudo.log 2>/dev/null || echo "Le fichier sudo.log est introuvable."
+    ![image](https://github.com/user-attachments/assets/7daf481f-7a85-45a0-8688-c026e7b5c435)
 
 
 
