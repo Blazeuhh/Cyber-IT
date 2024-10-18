@@ -188,3 +188,9 @@ sudo systemctl restart ssh
 ![image](https://github.com/user-attachments/assets/9f9932aa-f987-4035-8221-76557def3e47)
 
 
+### Changement de Hostname par nanalinux ( commande utilisé nano /etc/hostname , nano /etc/hosts )
+
+![image](https://github.com/user-attachments/assets/5516d60a-3272-4592-bb44-bec754f84bb0)
+
+![image](https://github.com/user-attachments/assets/05eeb741-6195-4602-91fa-a7712b338e15)
+
