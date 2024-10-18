@@ -302,7 +302,7 @@ Ajoutez ou modifiez la ligne suivante :
 ```bash
 UMASK 077
 ```
-### Résulats des commandes nano `/etc/pam.d/common-password` et `chage -l <utilisateur>`
+### Changement du fichier `/etc/pam.d/common-password` et résultat de la commande `chage -l <utilisateur>`
 
 ![image](https://github.com/user-attachments/assets/59c70a30-5f6b-4c99-9502-79cc6b3f5942)
 ![image](https://github.com/user-attachments/assets/85e6d8f9-c6b0-4201-aaa5-4aec63217097)
@@ -336,6 +336,8 @@ UMASK 077
 - **Logs des commandes `sudo` dans `/var/log/sudo/`** :
 
     ![image](https://github.com/user-attachments/assets/7daf481f-7a85-45a0-8688-c026e7b5c435)
+
+
 
 
 
