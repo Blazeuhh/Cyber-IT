@@ -335,19 +335,34 @@ UMASK 077
 
 - **Logs des commandes `sudo` dans `/var/log/sudo/`** :
 
-Résultat script monitoring.sh
+## Résultat scripts et configuration
+
+### Résultat script monitoring.sh
+
 ![image](https://github.com/user-attachments/assets/dd9f2557-8610-46f9-8957-db3d9bfbec5f)
 
 
-Script Save
+### Script Save
+
 ![Capture d'écran 2024-10-18 152120](https://github.com/user-attachments/assets/0298bc39-b80c-4767-8884-1247e62148ef)
 
 
-Conf cron
+### Ligne de commande cron automatisation
+
 ![Capture d'écran 2024-10-18 151523](https://github.com/user-attachments/assets/f3eeedcc-7209-497f-afbb-45ad28d680d7)
-Nettoyage journaux
+
+
+### Fichiers config services
+
+#### Nettoyage
+
 ![Capture d'écran 2024-10-18 152316](https://github.com/user-attachments/assets/929017a4-fa20-4cdb-8719-54f93937cfc2)
 
-journaux timer et système
+#### Service
+
 ![Capture d'écran 2024-10-18 151945](https://github.com/user-attachments/assets/3c7aad88-34bc-4fd0-a3b7-836257cf9b9d)
+
+
+#### Timer
+
 ![Capture d'écran 2024-10-18 152746](https://github.com/user-attachments/assets/414705ad-bfb2-4b15-8582-ec1f49f9d9de)
