@@ -95,7 +95,7 @@ sudo passwd adminuser`
 #### Vérifier les groupes d'adminuser
 `groups adminuser`
 
-### Voici normalement ce que vous devez avoir comme résulat après getent passwd et getent groups
+### Voici normalement ce que vous devez avoir comme résultat après les commandes  `getent passwd` et `getent groups`
 
 ![image](https://github.com/user-attachments/assets/256bfa75-f571-448c-8289-90141c9889e8)
 
