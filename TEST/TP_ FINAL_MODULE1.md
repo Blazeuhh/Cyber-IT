@@ -366,3 +366,5 @@ UMASK 077
 #### Timer
 
 ![Capture d'écran 2024-10-18 152746](https://github.com/user-attachments/assets/414705ad-bfb2-4b15-8582-ec1f49f9d9de)
+
+## ! Le SCRIPT est dans le fichier monitoring.sh dans le même dossier !
