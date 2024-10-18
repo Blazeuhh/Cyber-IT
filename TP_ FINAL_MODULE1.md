@@ -69,6 +69,36 @@ apt update`
 
 `lvremove /dev/LVMGroup/xxxx`
 
+#### Voir les paquets installés :
+
+`dpkg -l apprmor ssh git ufw vim sudo`
+
+![image](https://github.com/user-attachments/assets/e7407b4c-0933-4865-ab58-d0e163733bab)
+
+### Créer les utilisateurs user1, user2, adminuser puis mettre adminuser dans le group cyber
+# Ajouter des utilisateurs
+`sudo useradd user1
+sudo useradd user2
+sudo useradd adminuser`
+
+# Définir un mot de passe pour chaque utilisateur
+`sudo passwd user1
+sudo passwd user2
+sudo passwd adminuser`
+
+# Créer le groupe cyber
+`sudo groupadd cyber`
+
+# Ajouter adminuser au groupe cyber
+`sudo usermod -aG cyber adminuser`
+
+# Vérifier les groupes d'adminuser
+`groups adminuser`
+
+![image](https://github.com/user-attachments/assets/256bfa75-f571-448c-8289-90141c9889e8)
+
+
+
 
 
 
