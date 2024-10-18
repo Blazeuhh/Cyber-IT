@@ -335,22 +335,19 @@ UMASK 077
 
 - **Logs des commandes `sudo` dans `/var/log/sudo/`** :
 
-Sauvegarde
-![image](https://github.com/user-attachments/assets/29b1bd58-576a-4170-92b5-289df3ac9354)
-
-![image](https://github.com/user-attachments/assets/7daf481f-7a85-45a0-8688-c026e7b5c435)
+Résultat script monitoring.sh
+![image](https://github.com/user-attachments/assets/dd9f2557-8610-46f9-8957-db3d9bfbec5f)
 
 
+Script Save
+![Capture d'écran 2024-10-18 152120](https://github.com/user-attachments/assets/0298bc39-b80c-4767-8884-1247e62148ef)
 
 
-![image](https://github.com/user-attachments/assets/174748b4-c028-4671-afe5-2aada6533f75)
+Conf cron
+![Capture d'écran 2024-10-18 151523](https://github.com/user-attachments/assets/f3eeedcc-7209-497f-afbb-45ad28d680d7)
+Nettoyage journaux
+![Capture d'écran 2024-10-18 152316](https://github.com/user-attachments/assets/929017a4-fa20-4cdb-8719-54f93937cfc2)
 
-
-![image](https://github.com/user-attachments/assets/a1dfedef-bf32-4ed3-893b-37d5b94f4eb0)
-
-![image](https://github.com/user-attachments/assets/103a410f-efa6-4755-8df2-3a45f8fba989)
-
-
-![image](https://github.com/user-attachments/assets/e0c90e0f-c8fc-45a8-9172-7318530155cf)
-
-![image](https://github.com/user-attachments/assets/a1e08c0e-5823-4dcc-9609-bfc5448c5246)
+journaux timer et système
+![Capture d'écran 2024-10-18 151945](https://github.com/user-attachments/assets/3c7aad88-34bc-4fd0-a3b7-836257cf9b9d)
+![Capture d'écran 2024-10-18 152746](https://github.com/user-attachments/assets/414705ad-bfb2-4b15-8582-ec1f49f9d9de)
