@@ -76,27 +76,30 @@ apt update`
 ![image](https://github.com/user-attachments/assets/e7407b4c-0933-4865-ab58-d0e163733bab)
 
 ### Créer les utilisateurs user1, user2, adminuser puis mettre adminuser dans le group cyber
-# Ajouter des utilisateurs
+#### Ajouter des utilisateurs
 `sudo useradd user1
 sudo useradd user2
 sudo useradd adminuser`
 
-# Définir un mot de passe pour chaque utilisateur
+#### Définir un mot de passe pour chaque utilisateur
 `sudo passwd user1
 sudo passwd user2
 sudo passwd adminuser`
 
-# Créer le groupe cyber
+#### Créer le groupe cyber
 `sudo groupadd cyber`
 
-# Ajouter adminuser au groupe cyber
+#### Ajouter adminuser au groupe cyber
 `sudo usermod -aG cyber adminuser`
 
-# Vérifier les groupes d'adminuser
+#### Vérifier les groupes d'adminuser
 `groups adminuser`
+
+### Voici normalement ce que vous devez avoir comme résulat après getent passwd et getent groups
 
 ![image](https://github.com/user-attachments/assets/256bfa75-f571-448c-8289-90141c9889e8)
 
+![image](https://github.com/user-attachments/assets/9148f72b-1dad-4bd3-968e-d0769a34c487)
 
 
 
